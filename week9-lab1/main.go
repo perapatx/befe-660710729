@@ -8,6 +8,7 @@ import (
 	"os"
 	"time"
 
+	"github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"
 	_ "github.com/lib/pq"
 )
@@ -200,7 +201,7 @@ func main() {
 	defer db.Close()
 
 	r := gin.Default()
-
+	r.Use(cors.Default())
 	r.GET("/health", func(c *gin.Context) {
 		err := db.Ping()
 		if err != nil {

@@ -104,7 +104,7 @@ const AddBookPage = () => {
     setIsSubmitting(true);
 
     try {
-      const response = await fetch('/api/v1/books/', {
+      const response = await fetch('http://localhost:8080/api/v1/books', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -114,7 +114,8 @@ const AddBookPage = () => {
           author: formData.author.trim(),
           isbn: formData.isbn.trim(),
           year: parseInt(formData.year),
-          price: parseFloat(formData.price)
+          price: parseFloat(formData.price),
+          is_new: true
         }),
       });
 

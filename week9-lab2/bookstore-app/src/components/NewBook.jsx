@@ -39,7 +39,7 @@ const NewBooks = () => {
   // กรณีกำลังโหลดข้อมูล
   if (loading) {
     return (
-      <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+      <div className="grid md:grid-cols-2 lg:grid-cols-5 gap-8">
         <div className="text-center py-8 col-span-full">
           Loading new arrivals...
         </div>
@@ -50,7 +50,7 @@ const NewBooks = () => {
   // กรณีเกิดข้อผิดพลาด
   if (error) {
     return (
-      <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+      <div className="grid md:grid-cols-2 lg:grid-cols-5 gap-8">
         <div className="text-center py-8 col-span-full text-red-600">
           Error: {error}
         </div>
@@ -60,7 +60,7 @@ const NewBooks = () => {
 
   // กรณีแสดงผลข้อมูลปกติ
   return (
-    <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+    <div className="grid md:grid-cols-2 lg:grid-cols-5 gap-8">
       {newBooks.map(book => (
         <BookCard 
           key={book.id} 

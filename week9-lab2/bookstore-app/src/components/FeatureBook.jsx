@@ -13,7 +13,7 @@ const FeaturedBooks = () => {
         setLoading(true);
         
         // เรียก API เพื่อดึงข้อมูลหนังสือ
-        const response = await fetch('/api/v1/books/');
+        const response = await fetch('http://localhost:8080/api/v1/books');
 
         if (!response.ok) {
           throw new Error('Failed to fetch books');
@@ -23,7 +23,7 @@ const FeaturedBooks = () => {
 
         // สุ่มหนังสือ 3 เล่ม
         const shuffled = [...data].sort(() => 0.5 - Math.random());
-        const selected = shuffled.slice(0, 3);
+        const selected = shuffled.slice(0, 5);
 
         setFeaturedBooks(selected);
         setError(null);
@@ -44,7 +44,7 @@ const FeaturedBooks = () => {
   // กรณีกำลังโหลดข้อมูล
   if (loading) {
     return (
-      <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+      <div className="grid md:grid-cols-2 lg:grid-cols-5 gap-8">
         <div className="text-center py-8 col-span-full">
           Loading...
         </div>
@@ -55,7 +55,7 @@ const FeaturedBooks = () => {
   // กรณีเกิดข้อผิดพลาด
   if (error) {
     return (
-      <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+      <div className="grid md:grid-cols-2 lg:grid-cols-5 gap-8">
         <div className="text-center py-8 col-span-full text-red-600">
           Error: {error}
         </div>
@@ -65,7 +65,7 @@ const FeaturedBooks = () => {
 
   // กรณีแสดงผลข้อมูลปกติ
   return (
-    <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+    <div className="grid md:grid-cols-2 lg:grid-cols-5 gap-8">
       {featuredBooks.map(book => (
         <BookCard 
           key={book.id} 

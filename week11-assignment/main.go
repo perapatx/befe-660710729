@@ -133,8 +133,8 @@ func getBook(c *gin.Context) {
 	var book Book
 
 	// QueryRow ใช้เมื่อคาดว่าจะได้ผลลัพธ์ 0 หรือ 1 แถว
-	err := db.QueryRow("SELECT id, title, author FROM books WHERE id = $1", id).
-		Scan(&book.ID, &book.Title, &book.Author)
+	err := db.QueryRow("SELECT id, title, author, isbn, year, price, created_at, updated_at FROM books WHERE id = $1", id).
+		Scan(&book.ID, &book.Title, &book.Author, &book.ISBN, &book.Year, &book.Price, &book.CreatedAt, &book.UpdatedAt)
 
 	if err == sql.ErrNoRows {
 		c.JSON(http.StatusNotFound, gin.H{"error": "book not found"})
